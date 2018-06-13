@@ -2,6 +2,7 @@ const typeDefs = `
   type Query { 
       books: [Book] 
       negocios: [negocio]
+      negocio(user: String):negocio
     
     }
   type Book { title: String, author: String }

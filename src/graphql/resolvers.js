@@ -5,12 +5,21 @@ const resolvers = {
     Query: { 
         books: () => books,
           negocios: ()=>{
-          const users = Business.find().exec()
-          if (!users) {
+          const datos = Business.find().exec()
+          if (!datos) {
               throw new Error('Error')
             }
-            return users
+            return datos
+          },
+
+          negocio: (root, args, context, info)=>{
+           const dato = Business.findOne({user: args.user}).exec()
+           if (!dato) {
+            throw new Error('Error')
           }
+          return dato 
+          }
+
       
       },
    
