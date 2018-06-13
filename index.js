@@ -26,6 +26,7 @@ const typeDefs = `
     }
   type Book { title: String, author: String }
   type negocio {
+    id: ID,
     name: String,
     type: String, 
     status: Boolean,
@@ -50,6 +51,7 @@ const resolvers = {
         }
     
     },
+ 
 };
 
 // Put together a schema
@@ -61,6 +63,9 @@ const schema = makeExecutableSchema({
 // Initialize the app
 const app = express();
 
+//config server
+app.set('port', process.env.PORT || 3000)
+
 // The GraphQL endpoint
 app.use('/graphql', express.json(), graphqlExpress({ schema }));
 
@@ -68,6 +73,6 @@ app.use('/graphql', express.json(), graphqlExpress({ schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // Start the server
-app.listen(3000, () => {
-  console.log('Go to http://localhost:3000/graphiql to run queries!');
+app.listen(app.get('port'), () => {
+  console.log('Go to http://localhost:'+app.get('port')+'/graphiql to run queries!');
 });
