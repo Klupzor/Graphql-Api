@@ -3,7 +3,6 @@ const Person = require('../models/person')
 
 const resolvers = {
     Query: { 
-        books: () => books,
           negocios: ()=>{
           const datos = Business.find().exec()
           if (!datos) {
