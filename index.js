@@ -1,8 +1,7 @@
 const express = require('express');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
-const Business = require('./src/models/business')
-const Person = require('./src/models/person')
+
 // Some fake data
 const books = [
   {
@@ -15,44 +14,11 @@ const books = [
   },
 ];
 
-
-
 // The GraphQL schema in string form
-const typeDefs = `
-  type Query { 
-      books: [Book] 
-      negocios: [negocio]
-    
-    }
-  type Book { title: String, author: String }
-  type negocio {
-    id: ID,
-    name: String,
-    type: String, 
-    status: Boolean,
-    panel: [String], 
-    user: String,
-    email: String,
-    phone: Int,
-    services: Boolean
-}
-`;
+const typeDefs = require('./src/graphql/typeDefs')
 
 // The resolvers
-const resolvers = {
-  Query: { 
-      books: () => books,
-        negocios: ()=>{
-        const users = Business.find().exec()
-        if (!users) {
-            throw new Error('Error')
-          }
-          return users
-        }
-    
-    },
- 
-};
+const resolvers = require('./src/graphql/resolvers')
 
 // Put together a schema
 const schema = makeExecutableSchema({
