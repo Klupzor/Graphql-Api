@@ -2,24 +2,39 @@ const negocioType = `
 type negocio {
     id: ID,
     name: String,
-    type: String, 
+    type: Sectores, 
     status: Boolean,
     panel: [String], 
     user: String!,
     email: String,
-    phone: Int,
+    phone: String,
     services: Boolean
 }
 
+enum Sectores {
+    Restaurante
+    Bar
+    Discoteca
+}
+
 input NuevoNegocio {
-    id: ID,
     name: String,
-    type: String, 
+    type: Sectores, 
     status: Boolean,
     panel: [String], 
     user: String,
     email: String,
-    phone: Int,
+    phone: String,
+    services: Boolean
+
+}
+
+input ModificarNegocio{
+    name: String,
+    status: Boolean,
+    panel: [String], 
+    email: String,
+    phone: String,
     services: Boolean
 
 }

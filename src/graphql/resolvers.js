@@ -23,14 +23,29 @@ const resolvers = {
       },
 
       Mutation:{
-        negocioAdd: (_,args, context)=>{
+        negocioAdd: (_,args)=>{
             var datos = new Business (args.negocio);
             datos.save(function (err) {
-              if (err) return handleError(err);
+                if (err) return console.error(err) 
               // saved!
             });
-
             return datos
+        },
+
+        personAdd: (_,args)=>{
+            var datos = new Person (args.person);
+            datos.save(function (err) {
+                if (err) return console.error(err) 
+              // saved!
+            });
+            return datos
+        },
+
+        negocioEdit: (_, args) => {
+            return Business.findOneAndUpdate({user : args.user}, args.negocio, function (err, post) {
+                if (err) return next(err);
+            
+            });
         }
       }
    
