@@ -20,9 +20,9 @@ const resolvers = {
           }
 
       
-      },
+    },
 
-      Mutation:{
+    Mutation:{
         negocioAdd: (_,args)=>{
             var datos = new Business (args.negocio);
             datos.save(function (err) {
@@ -46,9 +46,18 @@ const resolvers = {
                 if (err) return next(err);
             
             });
+        },
+
+        personEdit: (_, args) => {
+            return Person.findOneAndUpdate({user : args.user}, args.person, function (err, post) {
+                if (err) return next(err);
+            
+            });
         }
-      }
+
+
+    }
    
-  };
+};
 
   module.exports = resolvers

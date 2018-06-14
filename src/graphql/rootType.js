@@ -9,6 +9,7 @@ const rootType = `
     negocioAdd(negocio: NuevoNegocio): negocio
     negocioEdit(user: String!, negocio: ModificarNegocio): negocio
     personAdd(person: NuevaPersona): person
+    personEdit(user: String!, person: ModificarPersona): person
   }
     
  

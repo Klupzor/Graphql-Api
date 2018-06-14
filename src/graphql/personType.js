@@ -15,7 +15,13 @@ input NuevaPersona {
     namePerson: String,
     phonePerson: String,
     password: String
+}
 
+input ModificarPersona {
+    emailPerson: String,
+    namePerson: String,
+    phonePerson: String,
+    password: String
 }
 `;
 
