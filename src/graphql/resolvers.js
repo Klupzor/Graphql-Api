@@ -24,11 +24,13 @@ const resolvers = {
 
       Mutation:{
         negocioAdd: (_,args, context)=>{
+            var datos = new Business (args.negocio);
+            datos.save(function (err) {
+              if (err) return handleError(err);
+              // saved!
+            });
 
-            Business.create(args.negocio), (err, data) =>{
-                if (err) return handleError(err);
-                console.log(data)
-            }
+            return datos
         }
       }
    
