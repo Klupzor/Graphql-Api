@@ -17,7 +17,23 @@ const resolvers = {
             throw new Error('Error')
           }
           return dato 
-          }
+          },
+
+          personas: ()=>{
+            const datos = Person.find().exec()
+            if (!datos) {
+                throw new Error('Error')
+              }
+              return datos
+            },
+          
+            persona: (_, args)=>{
+                const dato = Person.findOne({user: args.user}).exec()
+                if (!dato) {
+                 throw new Error('Error')
+               }
+               return dato 
+               }
 
       
     },

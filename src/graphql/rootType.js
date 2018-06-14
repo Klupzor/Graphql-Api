@@ -2,6 +2,8 @@ const rootType = `
   type Query { 
       negocios: [negocio]
       negocio(user: String!):negocio
+      personas: [person]
+      persona(user: String!): person
     
     }
 
