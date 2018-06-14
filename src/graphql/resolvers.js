@@ -21,6 +21,16 @@ const resolvers = {
 
       
       },
+
+      Mutation:{
+        negocioAdd: (_,args, context)=>{
+
+            Business.create(args.negocio), (err, data) =>{
+                if (err) return handleError(err);
+                console.log(data)
+            }
+        }
+      }
    
   };
 

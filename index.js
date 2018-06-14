@@ -3,7 +3,7 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 
 
 //import schema graphql
-const schema = require('./src/graphql/index')
+const schema = require('./src/graphql/')
 
 
 // Initialize the app

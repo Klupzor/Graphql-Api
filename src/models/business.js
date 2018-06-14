@@ -9,7 +9,8 @@ var BusinessSchema = Schema({
     user: {         //usuario que se usa para el link del negocio
         type: String,
         lowercase: true,
-        unique: true
+        unique: true,
+        required: true
     },
     email: {type: String, lowercase: true},
     phone: Number,
