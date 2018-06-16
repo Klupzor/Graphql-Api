@@ -12,7 +12,7 @@ module.exports = function Connection(){
         // servidor base de datos en mongodb atlas:
         // mongoose.connect(process.env.DATA_BASE)
 
-        .then(() =>  console.log('connection succesful'))
+        // .then(() =>  console.log('connection succesful'))
         .catch((err) => console.error(err));
         db = mongoose.connection
     }

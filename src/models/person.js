@@ -13,7 +13,8 @@
         namePerson: String,
         phonePerson: Number,
         password: String,
-        businessId: [Schema.Types.ObjectId]
+        businessId: [Schema.Types.ObjectId],
+        jwt: String
 
 
     })

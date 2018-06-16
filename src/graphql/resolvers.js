@@ -1,6 +1,7 @@
 const Business = require('../models/business')
 const Person = require('../models/person')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const resolvers = {
     Query: { 
@@ -95,7 +96,11 @@ const resolvers = {
                 if (err) return console.error(err) 
               // saved!
             });
+
+            datos.jwt = jwt.sign({_id: datos._id}, process.env.JWT_SECRET)
+
             return datos
+            
         },
 
         login: async (_, args) => {
@@ -109,6 +114,7 @@ const resolvers = {
                 throw new Error('Password incorrecto!')
             }
 
+            user.jwt = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
             return user
 
         }

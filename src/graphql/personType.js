@@ -6,7 +6,8 @@ type person {
     emailPerson: String,
     namePerson: String,
     phonePerson: String,
-    password: String
+    password: String,
+    jwt: String
 }
 
 input NuevaPersona {
