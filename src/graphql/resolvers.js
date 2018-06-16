@@ -1,5 +1,6 @@
 const Business = require('../models/business')
 const Person = require('../models/person')
+const bcrypt = require('bcrypt')
 
 const resolvers = {
     Query: { 
@@ -69,9 +70,29 @@ const resolvers = {
                 if (err) return next(err);
             
             });
+        },
+
+        signup: async (_, args) =>{
+            //Verificando que no exista usuario
+            const existingUser = await Person.findOne({user: args.user})
+
+            if(existingUser){
+                throw new Error('Usuario ya registrado!')
+            }
+            // creando usuario
+            const password = await bcrypt.hash(args.userPassword, 10)
+
+            var datos = new Person ({user: args.user, password: password, emailPerson: args.pEmail});
+            datos.save(function (err) {
+                if (err) return console.error(err) 
+              // saved!
+            });
+            
+            Business.create(args), (err)=> {
+                if (err) throw new Error(err)
+            }
+            return datos
         }
-
-
     }
    
 };
