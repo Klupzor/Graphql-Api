@@ -87,11 +87,26 @@ const resolvers = {
                 if (err) return console.error(err) 
               // saved!
             });
-            
+            // Creando negocio adjunto a la persona
             Business.create(args), (err)=> {
                 if (err) throw new Error(err)
             }
             return datos
+        },
+
+        login: async (_, args) => {
+            const user =  await Person.findOne({user: args.user})
+            if (!user){
+                throw new Error('Usuario no encontrado')
+            }
+            const validPassword = await bcrypt.compare(args.password, user.password)
+
+            if(!validPassword){
+                throw new Error('Password incorrecto!')
+            }
+
+            return user
+
         }
     }
    
