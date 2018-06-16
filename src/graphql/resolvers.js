@@ -79,18 +79,22 @@ const resolvers = {
             if(existingUser){
                 throw new Error('Usuario ya registrado!')
             }
+
+            // Creando negocio adjunto a la persona
+            var negocio = new Business(args)
+            negocio.save(function (err) {
+                if (err) return console.error(err) 
+              // saved!
+            });
+
             // creando usuario
             const password = await bcrypt.hash(args.userPassword, 10)
 
-            var datos = new Person ({user: args.user, password: password, emailPerson: args.pEmail});
+            var datos = new Person ({user: args.user, password: password, emailPerson: args.pEmail, businessId: negocio._id});
             datos.save(function (err) {
                 if (err) return console.error(err) 
               // saved!
             });
-            // Creando negocio adjunto a la persona
-            Business.create(args), (err)=> {
-                if (err) throw new Error(err)
-            }
             return datos
         },
 
